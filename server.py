@@ -6,11 +6,12 @@ import os
 
 from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
-from database.database import get_database
 
 
+os.chdir(os.path.dirname(__file__))
 app = Flask(__name__, static_folder="./build")
 CORS(app, origins="http://localhost:3000")
+from database.database import get_database
 
 
 @app.route("/test", methods=["GET"])
