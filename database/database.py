@@ -36,10 +36,11 @@ def reset_table():
 
 
 def get_database():  # pylint: disable=missing-function-docstring
-    with psycopg.connect(CONN_PARAMS) as conn:  # pylint: disable=not-context-manager
-        with conn.cursor() as cur:
-            cur.execute("select * from data_social;")
-            return cur.fetchall()
+    return ["test server 2"]
+    # with psycopg.connect(CONN_PARAMS) as conn:  # pylint: disable=not-context-manager
+    #     with conn.cursor() as cur:
+    #         cur.execute("select * from data_social;")
+    #         return cur.fetchall()
 
 
 if __name__ == "__main__":
