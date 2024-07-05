@@ -21,7 +21,8 @@ def test():  # pylint: disable=missing-function-docstring
 
 @app.route("/getDatabase", methods=["GET"])
 def get_database_server():  # pylint: disable=missing-function-docstring
-    return jsonify(get_database())
+    # return jsonify(get_database())
+    return jsonify(["test server"])
 
 
 @app.route("/", defaults={"path": ""})
