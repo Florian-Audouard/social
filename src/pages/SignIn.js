@@ -126,7 +126,7 @@ const SignIn = () => {
 			<br></br>
 			<input type="checkbox" onChange={showPassword} /> Show password
 			<br></br>
-			<button onClick={submit}>Sign In</button>
+			<button onClick={(_) => submit()}>Sign In</button>
 			<div>{textConnection}</div>
 		</span>
 	);
