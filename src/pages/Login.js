@@ -86,7 +86,7 @@ const Login = () => {
 			<br></br>
 			<input type="checkbox" onChange={showPassword} /> Show password
 			<br></br>
-			<button onClick={(_) => logIn()}>Log in</button>
+			<button onClick={logIn}>Log in</button>
 			<button onClick={(_) => navigate("/signin")}>Sign in</button>
 			<div>{textConnection}</div>
 		</span>

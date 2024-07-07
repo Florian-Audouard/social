@@ -32,7 +32,7 @@ const SignIn = () => {
 				input3.current.focus();
 				return;
 			case "password2":
-				submit();
+				ptdrwtf();
 				return;
 			default:
 				return;
@@ -47,7 +47,7 @@ const SignIn = () => {
 			input3.current.type = "password";
 		}
 	};
-	const submit = () => {
+	const ptdrwtf = () => {
 		console.log("allo");
 		if (username === "") {
 			setTextConnection("Username can't be empty");
@@ -126,7 +126,7 @@ const SignIn = () => {
 			<br></br>
 			<input type="checkbox" onChange={showPassword} /> Show password
 			<br></br>
-			<button onClick={(_) => submit()}>Sign In</button>
+			<button onClick={ptdrwtf}>Sign In</button>
 			<div>{textConnection}</div>
 		</span>
 	);
