@@ -61,8 +61,8 @@ def is_username_available(username):  # pylint: disable=missing-function-docstri
                 {"username": str(username)},
             )
             if cur.fetchall()[0][0] == 1:
-                return false
-            return true
+                return False
+            return True
 
 
 if __name__ == "__main__":
