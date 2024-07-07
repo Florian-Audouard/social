@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 
 const Feed = () => {
 	const [feed, setFeed] = useState([]);
-	let url_add = "";
-	if (process.env.NODE_ENV === "development") url_add = "http://localhost:80";
+
 	useEffect(() => {
 		const interval = setInterval(() => {
+			let url_add = "";
+			if (process.env.NODE_ENV === "development")
+				url_add = "http://localhost:80";
 			fetch(url_add + "/getDatabase")
 				.then((res) => res.json())
 				.then((data) => {
