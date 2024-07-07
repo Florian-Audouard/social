@@ -44,10 +44,11 @@ const SignIn = () => {
 			input3.current.type = "text";
 		} else {
 			input2.current.type = "password";
-			input3.current.type = "pasword";
+			input3.current.type = "password";
 		}
 	};
 	const submit = () => {
+		console.log("allo");
 		if (username === "") {
 			setTextConnection("Username can't be empty");
 			return;
