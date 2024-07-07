@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Message from "./Message";
 
 const Feed = () => {
 	const [feed, setFeed] = useState([]);
@@ -19,7 +20,7 @@ const Feed = () => {
 	return (
 		<div>
 			{feed.map((test) => (
-				<div key={"key" + test[0]}>{test[1]}</div>
+				<Message autor={test[2]} message={test[1]}></Message>
 			))}
 		</div>
 	);

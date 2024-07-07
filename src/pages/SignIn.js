@@ -1,17 +1,27 @@
 import React, { useState, useRef } from "react";
 import md5 from "md5";
+import { useNavigate } from "react-router-dom";
 import "../styles/signin.scss";
 
 const SignIn = () => {
+	const navigate = useNavigate();
 	let url_add = "";
 	if (process.env.NODE_ENV === "development") url_add = "http://localhost:80";
 	const [username, setUsername] = useState("");
 	const [isUsernameValid, setIsUsernameValid] = useState(false);
 	const [password, setPassword] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
-	const [error, setError] = useState("");
+	const [textConnection, setTextConnection] = useState("");
 	const input2 = useRef(null);
 	const input3 = useRef(null);
+
+	function setCookie(cname, cvalue) {
+		const date = new Date();
+		date.setFullYear(date.getFullYear() + 100);
+		let expires = "expires=" + date.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+
 	const keyInputHandler = (event) => {
 		if (event.key !== "Enter") return;
 		switch (event.target.id) {
@@ -38,14 +48,37 @@ const SignIn = () => {
 		}
 	};
 	const submit = () => {
+		if (username === "") {
+			setTextConnection("Username can't be empty");
+			return;
+		}
+		if (password === "") {
+			setTextConnection("Password can't be empty");
+			return;
+		}
 		if (password !== passwordConfirm) {
-			setError("Passwords are not the same");
+			setTextConnection("Passwords are not the same");
+			return;
 		}
 		fetch(url_add + "/SignIn", {
 			method: "POST",
 			body: JSON.stringify({ username, password: md5(password) }),
-		});
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data === "True") {
+					setTextConnection("Account created");
+					setCookie("username", username);
+					setCookie("password", md5(password));
+					setTimeout((_) => {
+						navigate("/");
+					}, 2000);
+				} else {
+					setTextConnection("Username allready used");
+				}
+			});
 	};
+
 	return (
 		<span className="signin">
 			<div>Login :</div>
@@ -57,9 +90,13 @@ const SignIn = () => {
 				onChange={(e) => setUsername(e.target.value)}
 				onKeyUp={(e) => {
 					keyInputHandler(e);
+					if (e.target.value === "") {
+						setIsUsernameValid(false);
+						return;
+					}
 					fetch(url_add + "/AvailableUsername", {
 						method: "POST",
-						body: username,
+						body: e.target.value,
 					})
 						.then((res) => res.json())
 						.then((data) => {
@@ -89,7 +126,7 @@ const SignIn = () => {
 			<input type="checkbox" onChange={showPassword} /> Show password
 			<br></br>
 			<button onClick={submit}>Sign In</button>
-			<div>{error}</div>
+			<div>{textConnection}</div>
 		</span>
 	);
 };

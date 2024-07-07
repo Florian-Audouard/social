@@ -7,7 +7,7 @@ import os
 from flask import Flask, jsonify, send_from_directory, request
 from flask_cors import CORS
 
-# import json
+import json
 
 os.chdir(os.path.dirname(__file__))
 app = Flask(__name__, static_folder="./build")
@@ -17,6 +17,8 @@ from database.database import (
     reset_table,
     add_message,
     is_username_available,
+    create_account,
+    connection,
 )
 
 
@@ -32,12 +34,11 @@ def get_database_server():  # pylint: disable=missing-function-docstring
 
 @app.route("/msgFromHtml", methods=["POST"])
 def receive_msg():  # pylint: disable=missing-function-docstring
-    result = request.get_data()
-    msg = result.decode("utf-8")
-    if "/reset" in msg:
+    result = json.loads(request.get_data().decode("utf-8"))
+    if "/reset" in result["message"]:
         reset_table()
         return "reset"
-    add_message(msg)
+    add_message(result["username"], result["message"])
     return "ok"
 
 
@@ -51,10 +52,15 @@ def available_username():  # pylint: disable=missing-function-docstring
 @app.route("/SignIn", methods=["POST"])
 def sign_in():  # pylint: disable=missing-function-docstring
     result = request.get_data()
-    # id = json.loads(result.decode("utf-8"))
-    # if not is_username_available(id["username"]):
-    #     return
-    return "ok"
+    id = json.loads(result.decode("utf-8"))
+    return jsonify(str(create_account(id["username"], id["password"])))
+
+
+@app.route("/LogIn", methods=["POST"])
+def log_in():  # pylint: disable=missing-function-docstring
+    result = request.get_data()
+    id = json.loads(result.decode("utf-8"))
+    return jsonify(str(connection(id["username"], id["password"])))
 
 
 @app.route("/", defaults={"path": ""})

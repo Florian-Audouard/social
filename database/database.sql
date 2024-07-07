@@ -11,4 +11,4 @@ CREATE TABLE data_social(
     autor text REFERENCES account(username)
 );
 
-insert into account (username,password) values ('florian','ab4f63f9ac65152575886860dde480a1');
+insert into account (username,password) VALUES ('florian','ab4f63f9ac65152575886860dde480a1');

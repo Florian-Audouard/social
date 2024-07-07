@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Post = () => {
+const Post = ({ username }) => {
 	const [inputValue, setInputValue] = useState("");
 	let url_add = "";
 	if (process.env.NODE_ENV === "development") url_add = "http://localhost:80";
@@ -8,7 +8,7 @@ const Post = () => {
 		if (inputValue === "") return;
 		fetch(url_add + "/msgFromHtml", {
 			method: "POST",
-			body: inputValue,
+			body: JSON.stringify({ username: username, message: inputValue }),
 		});
 		setInputValue("");
 	};

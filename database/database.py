@@ -42,14 +42,12 @@ def get_database():  # pylint: disable=missing-function-docstring
             return cur.fetchall()
 
 
-def add_message(msg):  # pylint: disable=missing-function-docstring
+def add_message(autor, msg):  # pylint: disable=missing-function-docstring
     with psycopg.connect(CONN_PARAMS) as conn:  # pylint: disable=not-context-manager
         with conn.cursor() as cur:
             cur.execute(
-                "INSERT INTO data_social (un_text) VALUES (%(msg)s);",
-                {
-                    "msg": str(msg),
-                },
+                "INSERT INTO data_social (un_text,autor) VALUES (%(msg)s,%(autor)s);",
+                {"msg": str(msg), "autor": str(autor)},
             )
 
 
@@ -63,6 +61,38 @@ def is_username_available(username):  # pylint: disable=missing-function-docstri
             if cur.fetchall()[0][0] == 1:
                 return False
             return True
+
+
+def create_account(username, password):
+    with psycopg.connect(CONN_PARAMS) as conn:  # pylint: disable=not-context-manager
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT count(username) FROM account WHERE username = %(username)s;",
+                {"username": str(username)},
+            )
+            if cur.fetchall()[0][0] == 1:
+                return False
+            cur.execute(
+                "INSERT INTO account (username,password) VALUES (%(username)s,%(password)s);",
+                {"username": str(username), "password": str(password)},
+            )
+            return True
+
+
+def auth(cur, username, password):
+    cur.execute(
+        "SELECT count(username) FROM account WHERE username = %(username)s AND password = %(password)s;",
+        {"username": str(username), "password": str(password)},
+    )
+    if cur.fetchall()[0][0] == 1:
+        return True
+    return False
+
+
+def connection(username, password):
+    with psycopg.connect(CONN_PARAMS) as conn:  # pylint: disable=not-context-manager
+        with conn.cursor() as cur:
+            return auth(cur, username, password)
 
 
 if __name__ == "__main__":
