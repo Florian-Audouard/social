@@ -3,6 +3,8 @@ import psycopg
 import os
 import urllib.parse
 
+from sympy import false, true
+
 os.chdir(os.path.dirname(__file__))
 
 default_look_filename = ".env"
@@ -40,6 +42,29 @@ def get_database():  # pylint: disable=missing-function-docstring
         with conn.cursor() as cur:
             cur.execute("select * from data_social;")
             return cur.fetchall()
+
+
+def add_message(msg):  # pylint: disable=missing-function-docstring
+    with psycopg.connect(CONN_PARAMS) as conn:  # pylint: disable=not-context-manager
+        with conn.cursor() as cur:
+            cur.execute(
+                "INSERT INTO data_social (un_text) VALUES (%(msg)s);",
+                {
+                    "msg": str(msg),
+                },
+            )
+
+
+def is_username_available(username):  # pylint: disable=missing-function-docstring
+    with psycopg.connect(CONN_PARAMS) as conn:  # pylint: disable=not-context-manager
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT count(username) FROM account WHERE username = %(username)s;",
+                {"username": str(username)},
+            )
+            if cur.fetchall()[0][0] == 1:
+                return false
+            return true
 
 
 if __name__ == "__main__":
