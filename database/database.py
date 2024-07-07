@@ -3,8 +3,6 @@ import psycopg
 import os
 import urllib.parse
 
-from sympy import false, true
-
 os.chdir(os.path.dirname(__file__))
 
 default_look_filename = ".env"

@@ -6,7 +6,8 @@ import os
 
 from flask import Flask, jsonify, send_from_directory, request
 from flask_cors import CORS
-import json
+
+# import json
 
 os.chdir(os.path.dirname(__file__))
 app = Flask(__name__, static_folder="./build")
@@ -50,9 +51,9 @@ def available_username():  # pylint: disable=missing-function-docstring
 @app.route("/SignIn", methods=["POST"])
 def sign_in():  # pylint: disable=missing-function-docstring
     result = request.get_data()
-    id = json.loads(result.decode("utf-8"))
-    if not is_username_available(id["username"]):
-        return
+    # id = json.loads(result.decode("utf-8"))
+    # if not is_username_available(id["username"]):
+    #     return
     return "ok"
 
 
