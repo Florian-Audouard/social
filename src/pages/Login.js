@@ -32,8 +32,7 @@ const Login = () => {
 	};
 	const logIn = () => {
 		console.log("ptdrr ?");
-		setTextConnection("allo ?
-			");
+		setTextConnection("allo ?");
 		if (username === "") {
 			setTextConnection("Username can't be empty");
 			return;
