@@ -32,32 +32,32 @@ const Login = () => {
 	};
 	const logIn = () => {
 		console.log("ptdrr ?");
-		setTextConnection("allo ?");
-		if (username === "") {
-			setTextConnection("Username can't be empty");
-			return;
-		}
-		if (password === "") {
-			setTextConnection("Password can't be empty");
-			return;
-		}
-		fetch(url_add + "/LogIn", {
-			method: "POST",
-			body: JSON.stringify({ username, password: md5(password) }),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				if (data === "True") {
-					setTextConnection("Connected");
-					setCookie("username", username);
-					setCookie("password", md5(password));
-					setTimeout((_) => {
-						navigate("/");
-					}, 2000);
-				} else {
-					setTextConnection("Invalid username or password");
-				}
-			});
+		// setTextConnection("allo ?");
+		// if (username === "") {
+		// 	setTextConnection("Username can't be empty");
+		// 	return;
+		// }
+		// if (password === "") {
+		// 	setTextConnection("Password can't be empty");
+		// 	return;
+		// }
+		// fetch(url_add + "/LogIn", {
+		// 	method: "POST",
+		// 	body: JSON.stringify({ username, password: md5(password) }),
+		// })
+		// 	.then((res) => res.json())
+		// 	.then((data) => {
+		// 		if (data === "True") {
+		// 			setTextConnection("Connected");
+		// 			setCookie("username", username);
+		// 			setCookie("password", md5(password));
+		// 			setTimeout((_) => {
+		// 				navigate("/");
+		// 			}, 2000);
+		// 		} else {
+		// 			setTextConnection("Invalid username or password");
+		// 		}
+		// 	});
 	};
 	const showPassword = (event) => {
 		if (event.target.checked) {
