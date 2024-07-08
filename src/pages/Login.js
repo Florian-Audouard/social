@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 	const navigate = useNavigate();
-	let url_add = "";
-	if (process.env.NODE_ENV === "development") url_add = "http://localhost:80";
+	// let url_add = "";
+	// if (process.env.NODE_ENV === "development") url_add = "http://localhost:80";
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	// const [textConnection, setTextConnection] = useState("");
