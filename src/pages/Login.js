@@ -59,15 +59,16 @@ const Login = () => {
 				}
 			});
 	};
-	// const showPassword = (event) => {
-	// 	if (event.target.checked) {
-	// 		input2.current.type = "text";
-	// 	} else {
-	// 		input2.current.type = "password";
-	// 	}
-	// };
+	const showPassword = (event) => {
+		if (event.target.checked) {
+			input2.current.type = "text";
+		} else {
+			input2.current.type = "password";
+		}
+	};
 	return (
 		<span className="login">
+			<input type="checkbox" onChange={showPassword} /> Show password
 			<div>Login :</div>
 			<input
 				type="text"
@@ -85,9 +86,6 @@ const Login = () => {
 				onChange={(e) => setPassword(e.target.value)}
 				onKeyUp={keyInputHandler}
 			/>
-			<br></br>
-			<input type="checkbox" /> Show password
-			<br></br>
 			<button onClick={logIn}>Log in</button>
 			<button onClick={(_) => navigate("/signin")}>Sign in</button>
 			<div>{textConnection}</div>
