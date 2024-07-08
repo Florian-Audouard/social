@@ -79,9 +79,6 @@ const SignIn = () => {
 				}
 			});
 	};
-	const allo = () => {
-		console.log("xd");
-	};
 	return (
 		<span className="signin">
 			<div>Login :</div>
@@ -126,9 +123,14 @@ const SignIn = () => {
 				onKeyUp={keyInputHandler}
 			/>
 			<br></br>
-			<input type="checkbox" onChange={showPassword} /> Show password
+			<input
+				type="checkbox"
+				onChange={showPassword}
+				id="passwordSignIn"
+			/>
+			<label for="passwordSignIn">Show password</label>
 			<br></br>
-			<button onClick={allo}>Sign In</button>
+			<button onClick={SignIn}>Sign In</button>
 			<div>{textConnection}</div>
 		</span>
 	);
