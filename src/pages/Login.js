@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import md5 from "md5";
+// import md5 from "md5";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -8,15 +8,15 @@ const Login = () => {
 	if (process.env.NODE_ENV === "development") url_add = "http://localhost:80";
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [textConnection, setTextConnection] = useState("");
+	// const [textConnection, setTextConnection] = useState("");
 
 	const input2 = useRef(null);
-	function setCookie(cname, cvalue) {
-		const date = new Date();
-		date.setFullYear(date.getFullYear() + 100);
-		let expires = "expires=" + date.toUTCString();
-		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-	}
+	// function setCookie(cname, cvalue) {
+	// 	const date = new Date();
+	// 	date.setFullYear(date.getFullYear() + 100);
+	// 	let expires = "expires=" + date.toUTCString();
+	// 	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	// }
 	const keyInputHandler = (event) => {
 		if (event.key !== "Enter") return;
 		switch (event.target.id) {
@@ -90,7 +90,7 @@ const Login = () => {
 			<br></br>
 			<button onClick={logIn}>Log in</button>
 			<button onClick={(_) => navigate("/signin")}>Sign in</button>
-			<div>{textConnection}</div>
+			{/* <div>{textConnection}</div> */}
 		</span>
 	);
 };
