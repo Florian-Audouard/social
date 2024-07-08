@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Post from "../components/Post";
-import Feed from "../components/Feed";
+// import Feed from "../components/Feed";
 import Account from "../components/Account";
 
 const Home = () => {
@@ -44,7 +44,6 @@ const Home = () => {
 				username={username}
 			></Account>
 			{isLogIn ? <Post username={username}></Post> : <span></span>}
-			<Feed></Feed>
 		</span>
 	);
 };
