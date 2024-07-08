@@ -86,7 +86,7 @@ const Login = () => {
 				onKeyUp={keyInputHandler}
 			/>
 			<br></br>
-			<input type="checkbox" onChange={showPassword} /> Show password
+			<input type="checkbox" /> Show password
 			<br></br>
 			<button onClick={logIn}>Log in</button>
 			<button onClick={(_) => navigate("/signin")}>Sign in</button>
