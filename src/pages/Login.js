@@ -59,13 +59,13 @@ const Login = () => {
 		// 		}
 		// 	});
 	};
-	const showPassword = (event) => {
-		if (event.target.checked) {
-			input2.current.type = "text";
-		} else {
-			input2.current.type = "password";
-		}
-	};
+	// const showPassword = (event) => {
+	// 	if (event.target.checked) {
+	// 		input2.current.type = "text";
+	// 	} else {
+	// 		input2.current.type = "password";
+	// 	}
+	// };
 	return (
 		<span className="login">
 			<div>Login :</div>
