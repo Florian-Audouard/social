@@ -13,7 +13,7 @@ os.chdir(os.path.dirname(__file__))
 app = Flask(__name__, static_folder="./build")
 CORS(app, origins="http://localhost:3000")
 from database.database import (
-    get_database,
+    get_feed_database,
     reset_table,
     add_message,
     is_username_available,
@@ -27,9 +27,9 @@ def test():  # pylint: disable=missing-function-docstring
     return jsonify({"test": "test"})
 
 
-@app.route("/getDatabase", methods=["GET"])
-def get_database_server():  # pylint: disable=missing-function-docstring
-    return jsonify(get_database())
+@app.route("/getFeed", methods=["GET"])
+def get_feed():  # pylint: disable=missing-function-docstring
+    return jsonify(get_feed_database())
 
 
 @app.route("/msgFromHtml", methods=["POST"])

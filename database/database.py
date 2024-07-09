@@ -35,7 +35,7 @@ def reset_table():
                 cur.execute(file.read())
 
 
-def get_database():  # pylint: disable=missing-function-docstring
+def get_feed_database():  # pylint: disable=missing-function-docstring
     with psycopg.connect(CONN_PARAMS) as conn:  # pylint: disable=not-context-manager
         with conn.cursor() as cur:
             cur.execute("select * from data_social;")

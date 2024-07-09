@@ -9,7 +9,7 @@ const Feed = () => {
 			let url_add = "";
 			if (process.env.NODE_ENV === "development")
 				url_add = "http://localhost:80";
-			fetch(url_add + "/getDatabase")
+			fetch(url_add + "/getFeed")
 				.then((res) => res.json())
 				.then((data) => {
 					setFeed(data.reverse());
@@ -18,9 +18,13 @@ const Feed = () => {
 		return () => clearInterval(interval);
 	}, []);
 	return (
-		<div>
+		<div id="feed">
 			{feed.map((test) => (
-				<Message autor={test[2]} message={test[1]}></Message>
+				<Message
+					key={test[0]}
+					autor={test[2]}
+					message={test[1]}
+				></Message>
 			))}
 		</div>
 	);

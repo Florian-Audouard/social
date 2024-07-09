@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-
+import { IoCloseSharp } from "react-icons/io5";
 const Post = ({ username }) => {
 	const [inputValue, setInputValue] = useState("");
+	const [isPostActive, setIsPostActive] = useState(false);
 	let url_add = "";
 	if (process.env.NODE_ENV === "development") url_add = "http://localhost:80";
 	const sendMsg = () => {
@@ -11,21 +12,43 @@ const Post = ({ username }) => {
 			body: JSON.stringify({ username: username, message: inputValue }),
 		});
 		setInputValue("");
+		closePopup();
 	};
 	const keyInputHandler = (event) => {
 		if (event.key !== "Enter") return;
+		if (event.shiftKey) return;
+		event.preventDefault();
 		sendMsg();
 	};
+	const closePopup = () => {
+		setIsPostActive(!isPostActive);
+	};
+	const popupExitHandler = (event) => {
+		if (event.target.id !== "postPopupScreen") return;
+		closePopup();
+	};
 	return (
-		<div>
-			<input
-				type="text"
-				id="post"
-				value={inputValue}
-				onChange={(e) => setInputValue(e.target.value)}
-				onKeyUp={keyInputHandler}
-			/>
-			<button onClick={sendMsg}>Send</button>
+		<div id="post">
+			<button onClick={closePopup}>POST</button>
+			{isPostActive ? (
+				<div id="postPopupScreen" onClick={popupExitHandler}>
+					<div id="postPopup">
+						<IoCloseSharp id="cross" onClick={closePopup} />
+						<textarea
+							id="postTextArea"
+							placeholder="Is there anything new ?"
+							value={inputValue}
+							onChange={(e) => setInputValue(e.target.value)}
+							onKeyDown={keyInputHandler}
+						/>
+						<button id="sendButton" onClick={sendMsg}>
+							Send
+						</button>
+					</div>
+				</div>
+			) : (
+				<span></span>
+			)}
 		</div>
 	);
 };

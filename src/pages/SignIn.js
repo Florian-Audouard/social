@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import md5 from "md5";
 import { useNavigate } from "react-router-dom";
-import "../styles/signin.scss";
 
 const SignIn = () => {
 	const navigate = useNavigate();
@@ -80,7 +79,7 @@ const SignIn = () => {
 			});
 	};
 	return (
-		<span className="signin">
+		<span id="signin">
 			<div>Login :</div>
 			<input
 				type="text"
@@ -128,7 +127,7 @@ const SignIn = () => {
 				onChange={showPassword}
 				id="passwordSignIn"
 			/>
-			<label for="passwordSignIn">Show password</label>
+			<label htmlFor="passwordSignIn">Show password</label>
 			<br></br>
 			<button onClick={SignIn}>Sign In</button>
 			<div>{textConnection}</div>

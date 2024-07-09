@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+}
+
+html{
+    min-height: 100%;
+}
+$color1:rgb(255,150,0);
+$textColor:rgb(255,50,50);
+body {
+    background-image: linear-gradient(to top, #300000, #200000, #150000, #100000, #050000);
+    color: white;
+    font-family: "Raleway", serif;
+}
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+ 
+  ::-webkit-scrollbar-track {
+    background: rgb(75,10,10) ;
+  }
+  
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(255,50,0);
+    border-radius: 12px;
+  }
+  
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(255,100,0);;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: $color1;
+  }
+
+button{
+    margin:5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom:5px ;
+    font-size: 15px;
+    color: white;
+    display: inline-block;
+    background-color: rgba(75,10,10,0.75) ;
+    border: solid 1px $color1;
+    border-radius: 5px;
+    transition: 0.5s ;
+    box-shadow: 0 0 5px $color1;
+    cursor: pointer;
+}
+button:hover{
+    transform: scale(1.1);
+    background-color: rgba(100,10,10,0.75) ;
+    box-shadow: 0 0 10px $color1;
+}
