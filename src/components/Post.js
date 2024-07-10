@@ -11,7 +11,6 @@ const Post = ({ username }) => {
 			method: "POST",
 			body: JSON.stringify({ username: username, message: inputValue }),
 		});
-		setInputValue("");
 		closePopup();
 	};
 	const keyInputHandler = (event) => {
@@ -22,6 +21,7 @@ const Post = ({ username }) => {
 	};
 	const closePopup = () => {
 		setIsPostActive(!isPostActive);
+		setInputValue("");
 	};
 	const popupExitHandler = (event) => {
 		if (event.target.id !== "postPopupScreen") return;
@@ -34,10 +34,12 @@ const Post = ({ username }) => {
 				<div id="postPopupScreen" onClick={popupExitHandler}>
 					<div id="postPopup">
 						<IoCloseSharp id="cross" onClick={closePopup} />
+						<div id="postName">{username.toUpperCase()}</div>
 						<textarea
 							id="postTextArea"
 							placeholder="Is there anything new ?"
 							value={inputValue}
+							autoFocus={true}
 							onChange={(e) => setInputValue(e.target.value)}
 							onKeyDown={keyInputHandler}
 						/>
