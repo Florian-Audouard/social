@@ -56,3 +56,9 @@ button:hover{
     background-color: rgba(100,10,10,0.75) ;
     box-shadow: 0 0 10px $color1;
 }
+.autor{
+  color:$textColor;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}

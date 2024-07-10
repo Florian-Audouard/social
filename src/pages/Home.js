@@ -7,7 +7,7 @@ const Home = () => {
 		<span className="Home">
 			<Account></Account>
 
-			<Feed></Feed>
+			<Feed username={"all"}></Feed>
 		</span>
 	);
 };

@@ -35,10 +35,16 @@ def reset_table():
                 cur.execute(file.read())
 
 
-def get_feed_database():  # pylint: disable=missing-function-docstring
+def get_feed_database(autor):  # pylint: disable=missing-function-docstring
     with psycopg.connect(CONN_PARAMS) as conn:  # pylint: disable=not-context-manager
         with conn.cursor() as cur:
-            cur.execute("select * from data_social;")
+            if autor == "all":
+                cur.execute("select * from data_social;")
+            else:
+                cur.execute(
+                    "select * from data_social WHERE autor = %(autor)s;",
+                    {"autor": autor},
+                )
             return cur.fetchall()
 
 

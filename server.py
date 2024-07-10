@@ -27,9 +27,10 @@ def test():  # pylint: disable=missing-function-docstring
     return jsonify({"test": "test"})
 
 
-@app.route("/getFeed", methods=["GET"])
+@app.route("/getFeed", methods=["POST"])
 def get_feed():  # pylint: disable=missing-function-docstring
-    return jsonify(get_feed_database())
+    result = json.loads(request.get_data().decode("utf-8"))
+    return jsonify(get_feed_database(result["username"]))
 
 
 @app.route("/msgFromHtml", methods=["POST"])

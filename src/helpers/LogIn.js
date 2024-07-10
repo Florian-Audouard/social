@@ -13,7 +13,7 @@ function getCookie(cname) {
 	}
 	return "";
 }
-export default function logIn(setIsLogIn, setUsername) {
+export function logIn(setIsLogIn, setUsername) {
 	let url_add = "";
 	if (process.env.NODE_ENV === "development") url_add = "http://localhost:80";
 	let localUsername = getCookie("username");
@@ -43,4 +43,7 @@ export default function logIn(setIsLogIn, setUsername) {
 				setIsLogIn(false);
 			}
 		});
+}
+export function getUsername() {
+	return getCookie("username");
 }

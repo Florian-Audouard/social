@@ -4,7 +4,7 @@ function eraseCookie(name) {
 	let expires = "expires=" + date.toUTCString();
 	document.cookie = name + "=" + 1 + ";" + expires + ";path=/";
 }
-export default function disconnect() {
+export function disconnect() {
 	eraseCookie("username");
 	eraseCookie("password");
 }
