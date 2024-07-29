@@ -23,22 +23,31 @@
         text-align: right;
         background-color: #080000;
         width: 700px;
-        height: 300px;
         top: 50px;
         left: 30%;
         border-radius: 20px;
         border: 2px solid $color1;
     }
-    #postTextArea{
+    .postTextArea{
         resize: none;
+        overflow: hidden;
+        white-space: pre-wrap;
         width: 650px;
         margin-right: 25px;
-        height: 160px;
+        min-height: 160px;
+        max-height: 280px;
         border: none;
         outline: none;
         color:white;
         font-size: 20px;
         background-color: transparent;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .reduceSize{
+        min-height: 25px;
+        height: 25px;
+
     }
     #postName{
         text-align: left;
@@ -46,8 +55,20 @@
         font-size: 17px;
         color: $textColor;
     }
-    #sendButton{
-        margin-top: 19px;
-        margin-right: 19px;
+    #bottomPost{
+        display: flex;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
+    #sendButton{
+        margin-left: 570px;
+    }
+    #pictureAdd{
+        margin-top: 2px;
+        margin-left: 20px;
+        font-size: 35px;
+        color: $color1;
+        cursor: pointer;
+    }
+
 }

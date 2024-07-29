@@ -1,9 +1,10 @@
 * {
-    margin: 0;
+
 }
 
 html{
     min-height: 100%;
+    
 }
 $color1:rgb(255,150,0);
 $textColor:rgb(255,50,50);
@@ -11,6 +12,11 @@ body {
     background-image: linear-gradient(to top, #300000, #200000, #150000, #100000, #050000);
     color: white;
     font-family: "Raleway", serif;
+    margin: 0;
+    ::-webkit-scrollbar-track {
+      border-radius: 12px;
+
+  }
 }
 ::-webkit-scrollbar {
     width: 10px;

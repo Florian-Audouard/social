@@ -103,4 +103,3 @@ def connection(username, password):
 
 if __name__ == "__main__":
     reset_table()
-    print(get_database())
